@@ -12,10 +12,10 @@ public final class DPersonnelConfig {
     @Config.RequiresMcRestart
     public static String entity = "scp:dpersonnel";
 
-    @Config.Comment({"定时回血：每项“世界时间=瞬间治疗等级”（等级 0 起算，即 /effect 的 amplifier）。",
-            "每个维度每 tick 检查一次，那个维度的世界时间等于某一项时，给所有维度里的 D 级人员回血（同时有几个维度到点就回几次）。",
-            "照 1.3.4 比的是世界的总时间（getWorldTime，不对 24000 取余），所以只在第一天到点，之后不会再触发（1.3.4 的已知问题）。",
-            "1.3.4：23000=100、6000=2；同一时刻有多项时用第一项。"})
+    @Config.Comment({"定时回血：每项“一天内的时间=瞬间治疗等级”（时间 0–23999，等级 0 起算，即 /effect 的 amplifier）。",
+            "只看主世界的时间，每天到点时给所有已加载维度里的 D 级人员回一次血；睡觉或 /time add 跳过去的时刻也算到了，",
+            "一次跳过好几天只回一次，时间往回调不算。同一时刻有多项时用第一项。",
+            "1.3.4：23000=100、6000=2（1.3.4 拿总时间比，只有第一天对得上，服主 11-07 改成每天）。"})
     @Config.RequiresMcRestart
     public static String[] healSchedule = {"23000=100", "6000=2"};
 
