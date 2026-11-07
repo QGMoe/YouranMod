@@ -2,6 +2,7 @@ package moe.qingu.youran.server.command;
 
 import moe.qingu.youran.config.DPersonnelConfig;
 import moe.qingu.youran.config.LinkConfig;
+import moe.qingu.youran.logic.Completions;
 import moe.qingu.youran.logic.TeleportPoints;
 import moe.qingu.youran.logic.Texts;
 import moe.qingu.youran.server.Chat;
@@ -16,6 +17,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * /youran 及其子命令（1.3.4 的 YouranCommand）。子命令区分大小写（如 saveD）；不认识的子命令与不带子命令时显示帮助。
@@ -100,6 +104,12 @@ public class CommandYouran extends SimpleCommand {
                 Chat.tell(entity, line);
             }
         }
+    }
+
+    /** 子命令补全，tp 后面补传送点名（服主 11-07 加；1.3.4 没有补全） */
+    @Override
+    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+        return Completions.youran(args, sender.canUseCommand(2, ""), TeleportPoints.names(Teleports.points()));
     }
 
     private static void tp(Entity entity, String target) {

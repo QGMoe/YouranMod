@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 1.3.4 两个指令共同的外壳（MCreator 的指令模板）：谁都能用（权限在子命令里自己查），没有别名、没有 Tab 补全；
+ * 1.3.4 两个指令共同的外壳（MCreator 的指令模板）：谁都能用（权限在子命令里自己查），没有别名、默认没有 Tab 补全（/youran 自己加了）；
  * 每个参数都可以写目标选择器（如 /youran @a），会对选中的每个实体各执行一次（原版指令系统的行为）。
  * 直接实现 {@link ICommand}（不继承 CommandBase），与 1.3.4 相同，SpongeForge 下的权限判断不变。
  */
