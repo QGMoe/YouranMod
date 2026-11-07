@@ -9,6 +9,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,7 +26,8 @@ import java.util.List;
  * 挖“空气浮岛”（会挖掉旁边已有区块里的方块）、平原群系的装饰（矿石、花草等会长进旁边已有的区块）、生成时的动物、
  * 别的模组的世界生成器。这些现在都没有了（与 1.3.4 的差异，见 README）。
  * <p>
- * 生物的自然刷新不受影响：仍按平原群系的刷怪表（{@link #getPossibleCreatures}），同 1.3.4。
+ * 生物也不自然刷新（服主 11-07）：刷怪表为空（{@link #getPossibleCreatures}），别的模组走 Forge 刷怪检查的自然刷新
+ * 由 {@code server.MainCitySpawns} 拦下。刷怪笼、刷怪蛋、指令召唤不受影响。
  */
 public class MainCityChunkGenerator implements IChunkGenerator {
     private static final int SEA_LEVEL = 63;
@@ -57,7 +59,7 @@ public class MainCityChunkGenerator implements IChunkGenerator {
 
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        return this.world.getBiome(pos).getSpawnableList(creatureType);
+        return Collections.emptyList();
     }
 
     @Override

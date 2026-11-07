@@ -6,13 +6,14 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /**
- * 只在服务端（独立服务端或单人游戏的内置服务端）运行的部分的入口：开服时登记 tick 处理、主城区块的处理与指令，关服时撤掉。
+ * 只在服务端（独立服务端或单人游戏的内置服务端）运行的部分的入口：开服时登记 tick 处理、主城区块与刷怪的处理、指令，关服时撤掉。
  * 客户端不会走到这里（单人游戏时由内置服务端那一侧调用）。
  */
 public final class ServerSide {
     private static PlayerTickHandler playerTick;
     private static WorldTickHandler worldTick;
     private static MainCityChunks mainCityChunks;
+    private static MainCitySpawns mainCitySpawns;
 
     private ServerSide() {
     }
@@ -27,6 +28,8 @@ public final class ServerSide {
         MinecraftForge.EVENT_BUS.register(worldTick);
         mainCityChunks = new MainCityChunks();
         MinecraftForge.EVENT_BUS.register(mainCityChunks);
+        mainCitySpawns = new MainCitySpawns();
+        MinecraftForge.EVENT_BUS.register(mainCitySpawns);
     }
 
     /** 顺序同 1.3.4：/hub 在前 */
@@ -48,6 +51,10 @@ public final class ServerSide {
         if (mainCityChunks != null) {
             MinecraftForge.EVENT_BUS.unregister(mainCityChunks);
             mainCityChunks = null;
+        }
+        if (mainCitySpawns != null) {
+            MinecraftForge.EVENT_BUS.unregister(mainCitySpawns);
+            mainCitySpawns = null;
         }
     }
 }
