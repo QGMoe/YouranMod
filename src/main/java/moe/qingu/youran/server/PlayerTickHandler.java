@@ -10,6 +10,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,12 +26,13 @@ import net.minecraftforge.fml.relauncher.Side;
  *   “这可比钻石要强太多了”（身上有任一种没用过的来自异世的工具）；</li>
  *   <li>在主城维度里：掉进虚空（y ≤ 0）传回主城；走进垃圾回收站岛屿时给进度并提示传送点已解锁。</li>
  * </ul>
- * 1.3.4 每 tick 先翻一遍物品栏再看进度完成没有；这里先看进度（一次查表），没完成的才翻物品栏，结果相同。
- * 物品栏的判断照 1.3.4 用 {@code InventoryPlayer.hasItemStack}：比较物品与损耗值，所以用过（掉了耐久）的工具不算。
+ * 1.3.4 每 tick 先翻一遍物品栏再看进度完成没有；这里先看进度（一次查表），没完成的才翻物品栏。
+ * 物品栏只比物品、不比耐久（服主 11-07 改）：1.3.4 用的 {@code InventoryPlayer.hasItemStack} 连损耗值一起比，
+ * 用过（掉了耐久）的来自异世的工具不算。
  */
 public final class PlayerTickHandler {
-    private ItemStack[] coins;
-    private ItemStack[] tools;
+    private Set<Item> coins;
+    private Set<Item> tools;
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -35,8 +41,9 @@ public final class PlayerTickHandler {
         }
         EntityPlayerMP player = (EntityPlayerMP) event.player;
         if (coins == null) {
-            coins = stacks(ModItems.oneYuan, ModItems.oneYuanCoin, ModItems.fiveYuan, ModItems.tenYuan);
-            tools = stacks(ModItems.primogemPickaxe, ModItems.primogemAxe, ModItems.primogemSword, ModItems.primogemShovel);
+            coins = new HashSet<>(Arrays.asList(ModItems.oneYuan, ModItems.oneYuanCoin, ModItems.fiveYuan, ModItems.tenYuan));
+            tools = new HashSet<>(Arrays.asList(ModItems.primogemPickaxe, ModItems.primogemAxe, ModItems.primogemSword,
+                    ModItems.primogemShovel));
         }
         if (!Advancements.isDone(player, Advancements.GET_ICE_FULL) && wearsFullIceArmor(player)) {
             Advancements.grant(player, Advancements.GET_ICE_FULL);
@@ -75,20 +82,16 @@ public final class PlayerTickHandler {
                 && player.inventory.armorInventory.get(3).getItem() == ModItems.iceHelmet;
     }
 
-    private static boolean hasAny(EntityPlayerMP player, ItemStack[] stacks) {
-        for (ItemStack stack : stacks) {
-            if (player.inventory.hasItemStack(stack)) {
-                return true;
+    /** 物品栏（含盔甲栏、副手）里有没有这些物品之一；只比物品，不比耐久 */
+    private static boolean hasAny(EntityPlayerMP player, Set<Item> items) {
+        for (List<ItemStack> list : Arrays.asList(player.inventory.mainInventory, player.inventory.armorInventory,
+                player.inventory.offHandInventory)) {
+            for (ItemStack stack : list) {
+                if (!stack.isEmpty() && items.contains(stack.getItem())) {
+                    return true;
+                }
             }
         }
         return false;
-    }
-
-    private static ItemStack[] stacks(Item... items) {
-        ItemStack[] stacks = new ItemStack[items.length];
-        for (int i = 0; i < items.length; i++) {
-            stacks[i] = new ItemStack(items[i]);
-        }
-        return stacks;
     }
 }
