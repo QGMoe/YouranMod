@@ -1,0 +1,16 @@
+{
+    "name": "①服务器基础信息",
+    "icon": "youranmod:youranserver",
+    "category": "first_rule",
+	"sortnum":0,
+    "pages": [
+        {
+            "type": "text",
+            "text": "你应该已经在官网上知道了，我们服务器叫做悠然服务器，官网是$(l:https://mc.ireading.store) mc.ireading.store$()。$(br2)除了这个主要官网之外，我们服务器还有两个备用官网：$(br)$(l:http://youran.ireading.store) ①youran.ireading.store$()（国内线）$(br)$(l:http://minecraft.ireading.store) ②minecraft.ireading.store$()（新加坡线）"
+        },
+		{
+			"type": "text",
+			"text": "正如我们在$(l:https://play.mcmod.cn/sv20185890.html)MC百科页面$()中所描述的那样，我们服务器是一个主打休闲生存的服务器，不搞什么小游戏啊之类的东西。所以不难发现，我们服务器到现今都没有一个正经的主城（好消息是现在在建了）。$(br2)那么我们服务器的具体玩法究竟是什么呢？$(br)生存。但这个生存不是简单的生存，是有许多线路可走的生存。当然在开始生存前，请你务必要了解我们服务器的一些规定。"
+		}
+    ]
+}

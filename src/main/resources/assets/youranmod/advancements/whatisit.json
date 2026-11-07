@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "youranmod:primogemore"
+    },
+    "title": {
+      "translate": "advancements.whatisit.title"
+    },
+    "description": {
+      "translate": "advancements.whatisit.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "whatisit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "youranmod:primogem",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  },
+  "parent": "youranmod:youran"
+}

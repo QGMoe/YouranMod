@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "youranmod:oneyuan"
+    },
+    "title": {
+      "translate": "advancements.youran_wallet.title"
+    },
+    "description": {
+      "translate": "advancements.youran_wallet.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "youran_wallet": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "youranmod:zhe_di_fang_zhen_bu_cuo"
+}

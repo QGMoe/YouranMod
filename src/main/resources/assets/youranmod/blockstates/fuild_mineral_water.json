@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "forge:fluid"
+  },
+  "variants": {
+    "fuild_mineral_water": [
+      {
+        "custom": {
+          "fluid": "fuild_mineral_water"
+        }
+      }
+    ]
+  }
+}

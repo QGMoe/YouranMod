@@ -1,0 +1,28 @@
+{
+    "name": "④一些指令的使用",
+    "icon": "minecraft:command_block",
+    "category": "first_rule",
+	"sortnum":3,
+    "pages": [
+        {
+            "type": "text",
+            "text": "我们服务器有一些不是原版的指令你可能需要知道如何使用。下面列出了一些你需要知道的指令。$(br2)$(l)/ta$()<br>作用：该指令可以让你和其他玩家$(4)在同一个维度中$()互相传送。$(br)格式：<br>/ta help ——显示帮助（是英文的）<br>/ta <玩家名> ——向一名玩家发送传送请求。"
+        },
+		{
+			"type": "text",
+			"text": "/ta <ok|accept|yes> ——同意当前的传送请求<br>/ta <no|deny> ——拒绝当前传送请求<br>/ta allow all ——允许所有传送请求<br>/ta deny all ——拒绝所有传送请求<br>/ok ——同/ta ok，同意当前传送请求<br>详细用法：<br>如果你要传送到某个玩家，首先你需要输入/ta <玩家名>向那名玩家发送传送请求，该请求会在100秒内过期（小提示：可以使用Tab键快速键入在线玩家名）。那名玩家收到消息（英"
+		},
+		{
+			"type": "text",
+			"text": "文）后，可以输入/ta ok、/ta yes、/ta accept和/ok来同意该传送请求，也可以使用/ta no和/ta deny来拒绝传送请求，并在接下来100秒内自动拒绝再次发送的传送请求。那名玩家同意后，你就可以在接下来100秒内使用/ta快速传送到那名玩家的所在地。$(br2)$(l)/hub$()<br>作用：$(4)传送至主城$()。<br>格式：<br>/hub<br>详细用法：<br>略。"
+		},
+		{
+			"type": "text",
+			"text": "$(l)/youran$()<br>作用：该指令有很多作用，具体如下$(br)格式：<br>/youran help ——显示指令帮助<br>/youran about ——显示悠然服务器的信息。<br>/youran maincity ——同指令/hub，传送至主城<br>/youran back ——从主城返回主世界<br>/youran serverhelp ——前往服务器网页手册<br>/youran temperature ——获取当前位置的气温（非静谧四季的气温）<br>/youran website ——前往服务器"
+		},
+		{
+			"type": "text",
+			"text": "官网<br>/youran tp help ——获取youran tp的使用帮助<br>/youran tp list ——列出当前所有传送点<br>/youran tp <传送点名称> ——传送至传送点<br>详细用法：<br>这还用说吗？没什么详细的用法，快去试试吧！"
+		}
+    ]
+}

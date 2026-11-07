@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "youranmod:blocks/hard_ice",
+    "up": "youranmod:blocks/hard_ice",
+    "north": "youranmod:blocks/hard_ice",
+    "east": "youranmod:blocks/hard_ice",
+    "south": "youranmod:blocks/hard_ice",
+    "west": "youranmod:blocks/hard_ice",
+    "particle": "youranmod:blocks/hard_ice"
+  }
+}

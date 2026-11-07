@@ -1,0 +1,42 @@
+{
+  "group": "youranmod",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "youranmod:youranserver"
+    },
+    "1": {
+      "item": "youranmod:youranserver"
+    },
+    "2": {
+      "item": "youranmod:youranserver"
+    },
+    "3": {
+      "item": "youranmod:youranserver"
+    },
+    "4": {
+      "item": "youranmod:youranserver"
+    },
+    "5": {
+      "item": "youranmod:youranserver"
+    },
+    "6": {
+      "item": "youranmod:youranserver"
+    },
+    "7": {
+      "item": "youranmod:youranserver"
+    },
+    "8": {
+      "item": "youranmod:youranserver"
+    }
+  },
+  "result": {
+    "item": "youranmod:youran_serverlogoblock",
+    "count": 1
+  }
+}

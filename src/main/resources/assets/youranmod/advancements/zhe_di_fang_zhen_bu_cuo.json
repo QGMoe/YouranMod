@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "youranmod:home"
+    },
+    "title": {
+      "translate": "advancements.zhe_di_fang_zhen_bu_cuo.title"
+    },
+    "description": {
+      "translate": "advancements.zhe_di_fang_zhen_bu_cuo.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "zhe_di_fang_zhen_bu_cuo": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 50
+  },
+  "parent": "youranmod:youran"
+}

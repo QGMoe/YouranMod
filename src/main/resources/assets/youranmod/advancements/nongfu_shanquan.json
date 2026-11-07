@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "youranmod:fuild_mineral_water"
+    },
+    "title": {
+      "translate": "advancements.nongfu_shanquan.title"
+    },
+    "description": {
+      "translate": "advancements.nongfu_shanquan.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "nongfu_shanquan": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "parent": "youranmod:nice_water"
+}

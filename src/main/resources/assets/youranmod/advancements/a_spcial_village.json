@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:spawn_egg",
+      "data": 120
+    },
+    "title": {
+      "translate": "advancements.a_spcial_village.title"
+    },
+    "description": {
+      "translate": "advancements.a_spcial_village.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "a_spcial_village": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 20
+  },
+  "parent": "youranmod:zhe_di_fang_zhen_bu_cuo"
+}

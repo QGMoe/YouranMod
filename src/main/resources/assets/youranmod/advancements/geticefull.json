@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "youranmod:icekuijiabody"
+    },
+    "title": {
+      "translate": "advancements.geticefull.title"
+    },
+    "description": {
+      "translate": "advancements.geticefull.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "geticefull": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "parent": "youranmod:youran"
+}

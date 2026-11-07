@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "youranmod:blocks/primogem_ore",
+    "up": "youranmod:blocks/primogem_ore",
+    "north": "youranmod:blocks/primogem_ore",
+    "east": "youranmod:blocks/primogem_ore",
+    "south": "youranmod:blocks/primogem_ore",
+    "west": "youranmod:blocks/primogem_ore",
+    "particle": "youranmod:blocks/primogem_ore"
+  }
+}

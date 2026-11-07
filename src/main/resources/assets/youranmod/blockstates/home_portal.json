@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "youranmod:home_portal_ew"
+    },
+    "axis=x": {
+      "model": "youranmod:home_portal_ns"
+    },
+    "inventory": {
+      "model": "youranmod:home_portal_ns"
+    }
+  }
+}
