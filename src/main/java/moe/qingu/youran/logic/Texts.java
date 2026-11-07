@@ -16,8 +16,6 @@ public final class Texts {
     public static final String RETURNING = "§e正在返回主世界.......";
     public static final String NOT_IN_MAIN_CITY = "§4您不在主城维度，无法返回主世界";
     public static final String TP_LIST_TITLE = "§e悠然服务器传送点列表";
-    public static final String TP_LIST_FW = "§6fw - 主城维度，垃圾回收站岛屿";
-    public static final String TP_TO_RECYCLE_STATION = "§2正在传送至“主城-垃圾回收站岛屿\"";
     public static final String TP_LOCKED = "§4您尚未完成前置成就！无法使用该传送点！";
     public static final List<String> ABOUT = Collections.unmodifiableList(Arrays.asList(
             "悠然服务器是一个主打休闲、冒险向的Minecraft 1.12.2版本Forge mod + SpongeForge服务器。",
@@ -37,7 +35,29 @@ public final class Texts {
     // ---- 主城、物品 ----
     public static final String WELCOME_MAIN_CITY = "§e欢迎来到悠然服务器大厅";
     public static final String LEFT_MAIN_CITY = "§e您已离开主城大厅";
-    public static final String RECYCLE_STATION_UNLOCKED = "§2传送点已解锁，可通过“/youran tp 废物”来直接到达该岛屿";
+    /** 传送点的维度没有登记（配置写错，或那个模组没装） */
+    public static String tpNoDimension(String name, int dimension) {
+        return "§4传送点 " + name + " 的维度 " + dimension + " 不存在，请联系管理员";
+    }
+
+    /** /youran tp list 的一行（默认配置下与 1.3.4 的“§6fw - 主城维度，垃圾回收站岛屿”相同） */
+    public static String tpListEntry(String name, String description) {
+        return "§6" + name + " - " + description;
+    }
+
+    /** 开始传送（默认配置下与 1.3.4 相同，两头引号不配对也照旧） */
+    public static String tpGoing(String title) {
+        return "§2正在传送至“" + title + "\"";
+    }
+
+    /**
+     * 走进解锁区域时的提示。1.3.4 写的是“/youran tp 废物”，实际子命令是 fw；服主 11-07 改成与子命令一致：
+     * 默认配置下是“§2传送点已解锁，可通过“/youran tp fw”来直接到达该岛屿”。
+     */
+    public static String tpUnlocked(String name, String place) {
+        return "§2传送点已解锁，可通过“/youran tp " + name + "”来直接到达" + place;
+    }
+
     /** 主城维度没有登记上（维度 ID 冲突，见 world.MainCity）时；1.3.4 没有这种情况 */
     public static final String MAIN_CITY_UNAVAILABLE = "§4主城维度没有启用（维度 ID 冲突），请联系管理员";
 

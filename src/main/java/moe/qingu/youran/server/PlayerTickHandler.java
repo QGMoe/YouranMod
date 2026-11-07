@@ -1,6 +1,7 @@
 package moe.qingu.youran.server;
 
 import moe.qingu.youran.config.TeleportConfig;
+import moe.qingu.youran.logic.TeleportPoints;
 import moe.qingu.youran.logic.Texts;
 import moe.qingu.youran.registry.ModItems;
 import moe.qingu.youran.util.Advancements;
@@ -8,6 +9,7 @@ import moe.qingu.youran.world.MainCity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,10 +53,16 @@ public final class PlayerTickHandler {
             if ((int) player.posY <= TeleportConfig.voidRescueY) {
                 Teleports.toMainCity(player);
             }
-            if (Settings.recycleArea.contains(player.posX, player.posY, player.posZ)
-                    && !Advancements.isDone(player, Advancements.RECYCLING_STATION)) {
-                Advancements.grant(player, Advancements.RECYCLING_STATION);
-                Chat.tell(player, Texts.RECYCLE_STATION_UNLOCKED);
+        }
+        // 传送点的解锁区域（1.3.4：主城里的垃圾回收站岛屿）
+        for (TeleportPoints.UnlockArea u : Settings.unlockAreas) {
+            if (player.dimension == u.dimension && (u.dimension != MainCity.DIM_ID || MainCity.isAvailable())
+                    && u.area.contains(player.posX, player.posY, player.posZ)) {
+                ResourceLocation id = new ResourceLocation(u.advancement);
+                if (!Advancements.isDone(player, id) && Advancements.exists(player, id)) {
+                    Advancements.grant(player, id);
+                    Chat.tell(player, Texts.tpUnlocked(u.pointName, u.place));
+                }
             }
         }
     }

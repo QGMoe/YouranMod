@@ -7,8 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TruncatedAreaTest {
-    private final TruncatedArea recycle = new TruncatedArea(TeleportConfig.recycleAreaMinX, TeleportConfig.recycleAreaMaxX,
-            TeleportConfig.recycleAreaMinZ, TeleportConfig.recycleAreaMaxZ, TeleportConfig.recycleAreaMinY);
+    /** 默认配置里的回收站岛屿解锁区域（1.3.4 写死的范围） */
+    private final TruncatedArea recycle = TeleportPoints.parseUnlockAreas(TeleportConfig.unlockAreas,
+            TeleportPoints.parsePoints(TeleportConfig.points).values).values.get(0).area;
 
     @Test
     void truncatesTowardZeroLike134() {

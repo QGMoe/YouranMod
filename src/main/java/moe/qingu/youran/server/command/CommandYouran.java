@@ -2,6 +2,7 @@ package moe.qingu.youran.server.command;
 
 import moe.qingu.youran.config.DPersonnelConfig;
 import moe.qingu.youran.config.LinkConfig;
+import moe.qingu.youran.logic.TeleportPoints;
 import moe.qingu.youran.logic.Texts;
 import moe.qingu.youran.server.Chat;
 import moe.qingu.youran.server.DPersonnel;
@@ -12,6 +13,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -104,22 +106,31 @@ public class CommandYouran extends SimpleCommand {
         switch (target) {
             case "list":
                 Chat.tell(entity, Texts.TP_LIST_TITLE);
-                Chat.tell(entity, Texts.TP_LIST_FW);
-                break;
-            case "fw":
-                if (entity instanceof EntityPlayerMP && Advancements.isDone((EntityPlayerMP) entity, Advancements.RECYCLING_STATION)) {
-                    Chat.tell(entity, Texts.TP_TO_RECYCLE_STATION);
-                    Teleports.toRecycleStation(entity);
-                } else {
-                    Chat.tell(entity, Texts.TP_LOCKED);
+                for (TeleportPoints.Point p : Teleports.points()) {
+                    Chat.tell(entity, Texts.tpListEntry(p.name, p.description));
                 }
+                return;
+            case "help":
+            case "":
                 break;
             default:
-                // help、不带参数、不认识的传送点
-                for (String line : Texts.TP_HELP) {
-                    Chat.tell(entity, line);
+                TeleportPoints.Point point = TeleportPoints.find(Teleports.points(), target);
+                if (point == null) {
+                    break;
                 }
-                break;
+                // 要解锁的传送点只给完成了那个进度的玩家用（同 1.3.4 的 fw）
+                if (point.advancement != null && !(entity instanceof EntityPlayerMP
+                        && Advancements.isDone((EntityPlayerMP) entity, new ResourceLocation(point.advancement)))) {
+                    Chat.tell(entity, Texts.TP_LOCKED);
+                    return;
+                }
+                Chat.tell(entity, Texts.tpGoing(point.title));
+                Teleports.toPoint(entity, point);
+                return;
+        }
+        // help、不带参数、不认识的传送点
+        for (String line : Texts.TP_HELP) {
+            Chat.tell(entity, line);
         }
     }
 }

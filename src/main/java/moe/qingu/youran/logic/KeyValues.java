@@ -17,7 +17,7 @@ public final class KeyValues {
         public final List<T> values;
         public final List<String> errors;
 
-        Result(List<T> values, List<String> errors) {
+        public Result(List<T> values, List<String> errors) {
             this.values = Collections.unmodifiableList(values);
             this.errors = Collections.unmodifiableList(errors);
         }

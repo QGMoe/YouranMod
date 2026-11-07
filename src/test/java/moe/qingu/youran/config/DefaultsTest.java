@@ -13,9 +13,6 @@ class DefaultsTest {
         assertEquals(-258, TeleportConfig.mainCityX);
         assertEquals(70, TeleportConfig.mainCityY);
         assertEquals(118, TeleportConfig.mainCityZ);
-        assertEquals(-274, TeleportConfig.recycleStationX);
-        assertEquals(69, TeleportConfig.recycleStationY);
-        assertEquals(162, TeleportConfig.recycleStationZ);
         assertEquals(-291, TeleportConfig.backX);
         assertEquals(64, TeleportConfig.backY);
         assertEquals(108, TeleportConfig.backZ);

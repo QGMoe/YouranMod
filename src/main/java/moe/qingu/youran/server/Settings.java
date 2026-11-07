@@ -7,7 +7,7 @@ import moe.qingu.youran.config.TeleportConfig;
 import moe.qingu.youran.logic.HealSchedule;
 import moe.qingu.youran.logic.KeyValues;
 import moe.qingu.youran.logic.RadiusTargets;
-import moe.qingu.youran.logic.TruncatedArea;
+import moe.qingu.youran.logic.TeleportPoints;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +16,8 @@ import java.util.List;
 final class Settings {
     static HealSchedule healSchedule = HealSchedule.of(Collections.emptyList());
     static List<RadiusTargets.Target> redBloodGemTargets = Collections.emptyList();
-    static TruncatedArea recycleArea;
+    static List<TeleportPoints.Point> teleportPoints = Collections.emptyList();
+    static List<TeleportPoints.UnlockArea> unlockAreas = Collections.emptyList();
 
     private Settings() {
     }
@@ -28,8 +29,12 @@ final class Settings {
         KeyValues.Result<RadiusTargets.Target> targets = RadiusTargets.parse(ItemConfig.redBloodGemTargets);
         warn("items.redBloodGemTargets", targets.errors);
         redBloodGemTargets = targets.values;
-        recycleArea = new TruncatedArea(TeleportConfig.recycleAreaMinX, TeleportConfig.recycleAreaMaxX,
-                TeleportConfig.recycleAreaMinZ, TeleportConfig.recycleAreaMaxZ, TeleportConfig.recycleAreaMinY);
+        KeyValues.Result<TeleportPoints.Point> points = TeleportPoints.parsePoints(TeleportConfig.points);
+        warn("teleport.points", points.errors);
+        teleportPoints = points.values;
+        KeyValues.Result<TeleportPoints.UnlockArea> areas = TeleportPoints.parseUnlockAreas(TeleportConfig.unlockAreas, teleportPoints);
+        warn("teleport.unlockAreas", areas.errors);
+        unlockAreas = areas.values;
     }
 
     private static void warn(String key, List<String> errors) {

@@ -29,6 +29,11 @@ public final class Advancements {
         return advancement != null && player.getAdvancements().getProgress(advancement).isDone();
     }
 
+    /** 进度存在（数据包里的也算） */
+    public static boolean exists(EntityPlayerMP player, ResourceLocation id) {
+        return player.server.getAdvancementManager().getAdvancement(id) != null;
+    }
+
     /** 把进度剩下的条件都给上（同 1.3.4） */
     public static void grant(EntityPlayerMP player, ResourceLocation id) {
         Advancement advancement = player.server.getAdvancementManager().getAdvancement(id);

@@ -1,6 +1,7 @@
 package moe.qingu.youran.server;
 
 import moe.qingu.youran.config.TeleportConfig;
+import moe.qingu.youran.logic.TeleportPoints;
 import moe.qingu.youran.logic.Texts;
 import moe.qingu.youran.world.DirectTeleporter;
 import moe.qingu.youran.world.MainCity;
@@ -9,8 +10,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.DimensionManager;
 
+import java.util.List;
+
 /**
- * 指令传送（1.3.4 的 Tp_to_maincity、TptoFeiwu 与 /youran back 里的那段），做法照 1.3.4：
+ * 指令传送（1.3.4 的 Tp_to_maincity、TptoFeiwu 与 /youran back 里的那段；tp 的传送点服主 11-07 改为配置），做法照 1.3.4：
  * <ul>
  *   <li>去主城：已在主城维度就直接设位置；否则（玩家时）先换到主城维度并放到出生点上方一格，再设到传送点；</li>
  *   <li>回主世界：先在主城维度里设到 back 坐标，再换到主世界、放到出生点上方一格。</li>
@@ -28,9 +31,33 @@ public final class Teleports {
         toPointInMainCity(entity, TeleportConfig.mainCityX, TeleportConfig.mainCityY, TeleportConfig.mainCityZ);
     }
 
-    /** 去垃圾回收站岛屿 */
-    public static void toRecycleStation(Entity entity) {
-        toPointInMainCity(entity, TeleportConfig.recycleStationX, TeleportConfig.recycleStationY, TeleportConfig.recycleStationZ);
+    /** 配置里的 /youran tp 传送点（按配置顺序） */
+    public static List<TeleportPoints.Point> points() {
+        return Settings.teleportPoints;
+    }
+
+    /**
+     * 去 /youran tp 的传送点（1.3.4 的 TptoFeiwu，做法同去主城）：已在那个维度就直接设位置（写了朝向时连朝向一起设）；
+     * 否则（玩家时）先换到那个维度、放到出生点上方一格，再设到传送点。调用方已检查过解锁条件。
+     */
+    public static void toPoint(Entity entity, TeleportPoints.Point point) {
+        if (point.dimension == MainCity.DIM_ID && !MainCity.isAvailable()) {
+            Chat.tell(entity, Texts.MAIN_CITY_UNAVAILABLE);
+            return;
+        }
+        if (!DimensionManager.isDimensionRegistered(point.dimension)) {
+            Chat.tell(entity, Texts.tpNoDimension(point.name, point.dimension));
+            return;
+        }
+        dismount(entity);
+        if (entity.dimension != point.dimension && canChangeDimension(entity)) {
+            changeDimensionToSpawn((EntityPlayerMP) entity, point.dimension);
+        }
+        if (point.yaw != null) {
+            entity.rotationYaw = point.yaw;
+            entity.rotationPitch = point.pitch;
+        }
+        entity.setPositionAndUpdate(point.x, point.y, point.z);
     }
 
     private static void toPointInMainCity(Entity entity, double x, double y, double z) {
