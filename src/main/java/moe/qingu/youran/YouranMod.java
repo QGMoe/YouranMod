@@ -7,6 +7,8 @@ import moe.qingu.youran.registry.ModItems;
 import moe.qingu.youran.registry.YouranTab;
 import moe.qingu.youran.server.ServerSide;
 import moe.qingu.youran.world.MainCity;
+import moe.qingu.youran.worldgen.MineralWaterLakeGenerator;
+import moe.qingu.youran.worldgen.OreGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -47,6 +49,9 @@ public final class YouranMod {
         ModFluids.register();
         YouranTab.create();
         MainCity.register();
+        // 1.3.4 把矿石与矿泉水湖放在同一个生成器里；拆开以后用重生成模组只补矿时不会连湖一起补
+        GameRegistry.registerWorldGenerator(new OreGenerator(), 5);
+        GameRegistry.registerWorldGenerator(new MineralWaterLakeGenerator(), 5);
     }
 
     @Mod.EventHandler
