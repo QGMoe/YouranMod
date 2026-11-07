@@ -22,10 +22,10 @@ class DefaultsTest {
 
     @Test
     void links() {
-        assertEquals("https://www.youranserver.top/", LinkConfig.websiteUrl);
-        assertEquals("www.youranserver.top", LinkConfig.websiteText);
-        assertEquals("https://qiguaideaaaa.github.io/The_Online_Manual_Guide_of_Youran_Minecraft_Server/", LinkConfig.manualUrl);
-        assertEquals(LinkConfig.manualUrl, LinkConfig.manualText);
+        assertEquals("https://youran.qingu.moe/", LinkConfig.websiteUrl);
+        assertEquals("youran.qingu.moe", LinkConfig.websiteText);
+        assertEquals("https://docs.youran.qingu.moe/", LinkConfig.manualUrl);
+        assertEquals("docs.youran.qingu.moe", LinkConfig.manualText);
         assertEquals("https://play.mcmod.cn/sv20185890.html", LinkConfig.mcmodUrl);
         assertEquals("play.mcmod.cn/sv20185890.html", LinkConfig.mcmodText);
     }
