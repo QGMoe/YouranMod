@@ -42,12 +42,10 @@ import net.minecraft.block.Block;
 
 import java.util.function.Supplier;
 
-@Mod(modid = YouranmodMod.MODID, version = YouranmodMod.VERSION ,name = YouranmodMod.NAME)
+@Mod(modid = YouranmodMod.MODID, version = YouranmodMod.VERSION)
 public class YouranmodMod {
 	public static final String MODID = "youranmod";
-	public static final String VERSION = "1.3.1";
-
-	public static final String NAME = "悠然服务器";
+	public static final String VERSION = "1.3.4";
 	public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel("youranmod:a");
 	@SidedProxy(clientSide = "com.youranserver.mod.ClientProxyYouranmodMod", serverSide = "com.youranserver.mod.ServerProxyYouranmodMod")
 	public static IProxyYouranmodMod proxy;

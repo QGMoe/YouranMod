@@ -12,11 +12,11 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class OreDictOrePrimogem extends ElementsYouranmodMod.ModElement {
 	public OreDictOrePrimogem(ElementsYouranmodMod instance) {
-		super(instance, 48);
+		super(instance, 51);
 	}
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		OreDictionary.registerOre("primogemOre", new ItemStack(BlockPrimogemore.block, (int) (1)));
+		OreDictionary.registerOre("primogem_ore", new ItemStack(BlockPrimogemore.block, (int) (1)));
 	}
 }

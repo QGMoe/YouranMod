@@ -24,7 +24,7 @@ public class ItemPrimogempickaxe extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:primogem_pickaxe")
 	public static final Item block = null;
 	public ItemPrimogempickaxe(ElementsYouranmodMod instance) {
-		super(instance, 12);
+		super(instance, 14);
 	}
 
 	@Override

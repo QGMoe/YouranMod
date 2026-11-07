@@ -31,7 +31,7 @@ public class BlockPrimogemore extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:primogemore")
 	public static final Block block = null;
 	public BlockPrimogemore(ElementsYouranmodMod instance) {
-		super(instance, 10);
+		super(instance, 11);
 	}
 
 	@Override

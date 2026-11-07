@@ -15,7 +15,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureTp_to_maincity extends ElementsYouranmodMod.ModElement {
 	public ProcedureTp_to_maincity(ElementsYouranmodMod instance) {
-		super(instance, 24);
+		super(instance, 35);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

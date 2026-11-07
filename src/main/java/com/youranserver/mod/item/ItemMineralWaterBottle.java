@@ -30,7 +30,7 @@ public class ItemMineralWaterBottle extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:mineral_water_bottle")
 	public static final Item block = null;
 	public ItemMineralWaterBottle(ElementsYouranmodMod instance) {
-		super(instance, 51);
+		super(instance, 19);
 	}
 
 	@Override

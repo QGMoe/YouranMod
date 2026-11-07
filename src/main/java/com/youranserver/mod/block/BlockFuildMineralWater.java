@@ -80,9 +80,9 @@ public class BlockFuildMineralWater extends ElementsYouranmodMod.ModElement {
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
 		boolean dimensionCriteria = false;
 		double randomSpawn = Math.random();
-		if (dimID == 0 || dimID == 7)
+		if (dimID == 7)
 			dimensionCriteria = true;
-		if (randomSpawn <= 0.997){
+		if (randomSpawn <= 0.998){
 			dimensionCriteria = false;
 		}
 		if (!dimensionCriteria)

@@ -27,7 +27,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureGetMineralWater extends ElementsYouranmodMod.ModElement {
 	public ProcedureGetMineralWater(ElementsYouranmodMod instance) {
-		super(instance, 55);
+		super(instance, 54);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

@@ -18,7 +18,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedurePrimogemsword_Attack_Mobs extends ElementsYouranmodMod.ModElement {
 	public ProcedurePrimogemsword_Attack_Mobs(ElementsYouranmodMod instance) {
-		super(instance, 46);
+		super(instance, 49);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

@@ -11,7 +11,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureLiKaiDaTin extends ElementsYouranmodMod.ModElement {
 	public ProcedureLiKaiDaTin(ElementsYouranmodMod instance) {
-		super(instance, 22);
+		super(instance, 33);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

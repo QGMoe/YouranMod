@@ -11,7 +11,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureThis_is_Youran_Server extends ElementsYouranmodMod.ModElement {
 	public ProcedureThis_is_Youran_Server(ElementsYouranmodMod instance) {
-		super(instance, 23);
+		super(instance, 34);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

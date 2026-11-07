@@ -27,7 +27,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 	public ProcedureYouranCommand(ElementsYouranmodMod instance) {
-		super(instance, 31);
+		super(instance, 39);
 	}
 
 	public static String executeProcedure(Map<String, Object> dependencies) {
@@ -62,6 +62,9 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 		int z = (int) dependencies.get("z");
 		World world = (World) dependencies.get("world");
 		String returnvalue = "";
+		boolean IsGetHelp = false;
+		boolean IsGetTPHelp = false;
+		IsGetHelp = (boolean) (false);
 		if ((((new Object() {
 			public String getText() {
 				String param = (String) cmdparams.get("0");
@@ -108,7 +111,7 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 					public Vec3d getPositionVector() {
 						return new Vec3d(x, y, z);
 					}
-				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u5B98\u7F51\uFF1A\"},{\"text\":\"mc.ireading.store\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://mc.ireading.store/\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
+				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u5B98\u7F51\uFF1A\"},{\"text\":\"www.youranserver.top\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.youranserver.top/\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
 			}
 		} else if ((((new Object() {
 			public String getText() {
@@ -214,7 +217,7 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 					public Vec3d getPositionVector() {
 						return new Vec3d(x, y, z);
 					}
-				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u624B\u518C\uFF1A\"},{\"text\":\"https://www.yuque.com/youranserver/book\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.yuque.com/youranserver/book\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
+				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u624B\u518C\uFF1A\"},{\"text\":\"https://qiguaideaaaa.github.io/The_Online_Manual_Guide_of_Youran_Minecraft_Server/\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://qiguaideaaaa.github.io/The_Online_Manual_Guide_of_Youran_Minecraft_Server/\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
 			}
 		} else if ((((new Object() {
 			public String getText() {
@@ -243,85 +246,7 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 			}
 		}.getText())).equals("help"))) {
 			returnvalue = (String) "114514";
-			if ((entity.canUseCommand((int) 2, ""))) {
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A7e\u6307\u4EE4\u4F7F\u7528\u5E2E\u52A9\uFF1A"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran about - \u5173\u4E8E\u670D\u52A1\u5668"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran back - \u4ECE\u4E3B\u57CE\u8FD4\u56DE\u4E3B\u4E16\u754C"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity)
-							.sendStatusMessage(new TextComponentString("\u00A76youran help - \u663E\u793A\u8BE5\u5E2E\u52A9\u4FE1\u606F"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran maincity - \u524D\u5F80\u4E3B\u57CE"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran saveD - \u7ED9D\u7EA7\u4EBA\u5458\u56DE\u8840"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran serverhelp - \u524D\u5F80\u670D\u52A1\u5668\u7F51\u9875\u624B\u518C"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran temperature - \u83B7\u53D6\u6240\u5904\u5730\u76EE\u524D\u7684\u6E29\u5EA6"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString(
-							"\u00A76youran tp - \u4F20\u9001\u81F3\u4E00\u4E9B\u5730\u65B9\uFF08\u6CE8\uFF1Ayouran tp list \u53EF\u5217\u51FA\u5F53\u524D\u6240\u6709\u4F20\u9001\u70B9\uFF09"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran website - \u524D\u5F80\u670D\u52A1\u5668\u5B98\u7F51"), (false));
-				}
-			} else {
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A7e\u6307\u4EE4\u4F7F\u7528\u5E2E\u52A9\uFF1A"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran about - \u5173\u4E8E\u670D\u52A1\u5668"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran back - \u4ECE\u4E3B\u57CE\u8FD4\u56DE\u4E3B\u4E16\u754C"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity)
-							.sendStatusMessage(new TextComponentString("\u00A76youran help - \u663E\u793A\u8BE5\u5E2E\u52A9\u4FE1\u606F"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran maincity - \u524D\u5F80\u4E3B\u57CE"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran serverhelp - \u524D\u5F80\u670D\u52A1\u5668\u7F51\u9875\u624B\u518C"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran temperature - \u83B7\u53D6\u6240\u5904\u5730\u76EE\u524D\u7684\u6E29\u5EA6"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(new TextComponentString(
-							"\u00A76youran tp - \u4F20\u9001\u81F3\u4E00\u4E9B\u5730\u65B9\uFF08\u6CE8\uFF1Ayouran tp list \u53EF\u5217\u51FA\u5F53\u524D\u6240\u6709\u4F20\u9001\u70B9\uFF09"),
-							(false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76youran website - \u524D\u5F80\u670D\u52A1\u5668\u5B98\u7F51"), (false));
-				}
-			}
+			IsGetHelp = (boolean) (true);
 		} else if ((((new Object() {
 			public String getText() {
 				String param = (String) cmdparams.get("0");
@@ -388,7 +313,7 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 					public Vec3d getPositionVector() {
 						return new Vec3d(x, y, z);
 					}
-				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u5B98\u7F51 - \"},{\"text\":\"mc.ireading.store\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://mc.ireading.store/\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
+				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u5B98\u7F51\uFF1A\"},{\"text\":\"www.youranserver.top\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.youranserver.top/\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
 			}
 			if (!world.isRemote && world.getMinecraftServer() != null) {
 				world.getMinecraftServer().getCommandManager().executeCommand(new ICommandSender() {
@@ -464,7 +389,7 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 					public Vec3d getPositionVector() {
 						return new Vec3d(x, y, z);
 					}
-				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u624B\u518C - \"},{\"text\":\"https://www.yuque.com/youranserver/book\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://www.yuque.com/youranserver/book\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
+				}, "tellraw @p[r=1] [{\"text\":\"\u670D\u52A1\u5668\u624B\u518C\uFF1A\"},{\"text\":\"https://qiguaideaaaa.github.io/The_Online_Manual_Guide_of_Youran_Minecraft_Server/\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"https://qiguaideaaaa.github.io/The_Online_Manual_Guide_of_Youran_Minecraft_Server/\"},\"color\":\"dark_blue\",\"underlined\":\"true\"}]");
 			}
 		} else if ((((new Object() {
 			public String getText() {
@@ -556,6 +481,7 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 			}
 		}.getText())).equals("tp"))) {
 			returnvalue = (String) "TP";
+			IsGetTPHelp = (boolean) (false);
 			if ((((new Object() {
 				public String getText() {
 					String param = (String) cmdparams.get("1");
@@ -565,6 +491,61 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 					return "";
 				}
 			}.getText())).equals("help"))) {
+				IsGetTPHelp = (boolean) (true);
+			} else if ((((new Object() {
+				public String getText() {
+					String param = (String) cmdparams.get("1");
+					if (param != null) {
+						return param;
+					}
+					return "";
+				}
+			}.getText())).equals("list"))) {
+				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+					((EntityPlayer) entity).sendStatusMessage(
+							new TextComponentString("\u00A7e\u60A0\u7136\u670D\u52A1\u5668\u4F20\u9001\u70B9\u5217\u8868"), (false));
+				}
+				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+					((EntityPlayer) entity).sendStatusMessage(
+							new TextComponentString("\u00A76fw - \u4E3B\u57CE\u7EF4\u5EA6\uFF0C\u5783\u573E\u56DE\u6536\u7AD9\u5C9B\u5C7F"), (false));
+				}
+			} else if ((((new Object() {
+				public String getText() {
+					String param = (String) cmdparams.get("1");
+					if (param != null) {
+						return param;
+					}
+					return "";
+				}
+			}.getText())).equals("fw"))) {
+				if ((((entity instanceof EntityPlayerMP) && ((entity).world instanceof WorldServer))
+						? ((EntityPlayerMP) entity).getAdvancements()
+								.getProgress(((WorldServer) (entity).world).getAdvancementManager()
+										.getAdvancement(new ResourceLocation("youranmod:a_spcial_village")))
+								.isDone()
+						: false)) {
+					if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+						((EntityPlayer) entity).sendStatusMessage(
+								new TextComponentString(
+										"\u00A72\u6B63\u5728\u4F20\u9001\u81F3\u201C\u4E3B\u57CE-\u5783\u573E\u56DE\u6536\u7AD9\u5C9B\u5C7F\""),
+								(false));
+					}
+					{
+						Map<String, Object> $_dependencies = new HashMap<>();
+						$_dependencies.put("entity", entity);
+						ProcedureTptoFeiwu.executeProcedure($_dependencies);
+					}
+				} else {
+					if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+						((EntityPlayer) entity).sendStatusMessage(new TextComponentString(
+								"\u00A74\u60A8\u5C1A\u672A\u5B8C\u6210\u524D\u7F6E\u6210\u5C31\uFF01\u65E0\u6CD5\u4F7F\u7528\u8BE5\u4F20\u9001\u70B9\uFF01"),
+								(false));
+					}
+				}
+			} else {
+				IsGetTPHelp = (boolean) (true);
+			}
+			if (((IsGetTPHelp) == (true))) {
 				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
 					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A7e\u60A0\u7136\u670D\u52A1\u5668TP\u5E2E\u52A9"),
 							(false));
@@ -582,96 +563,10 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 							"\u00A76youran tp <\u4F20\u9001\u70B9\u540D\u79F0> - \u4F20\u9001\u81EA\u5DF1\u81F3\u6307\u5B9A\u7684\u4F20\u9001\u70B9"),
 							(false));
 				}
-			} else if ((((new Object() {
-				public String getText() {
-					String param = (String) cmdparams.get("1");
-					if (param != null) {
-						return param;
-					}
-					return "";
-				}
-			}.getText())).equals("list"))) {
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A7e\u60A0\u7136\u670D\u52A1\u5668\u4F20\u9001\u70B9\u5217\u8868"), (false));
-				}
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A76\u5E9F\u7269 - \u4E3B\u57CE\u7EF4\u5EA6\uFF0C\u5E9F\u7269\u5C9B\u5C7F"), (false));
-				}
-			} else if ((((new Object() {
-				public String getText() {
-					String param = (String) cmdparams.get("1");
-					if (param != null) {
-						return param;
-					}
-					return "";
-				}
-			}.getText())).equals("\u5E9F\u7269"))) {
-				if ((((entity instanceof EntityPlayerMP) && ((entity).world instanceof WorldServer))
-						? ((EntityPlayerMP) entity).getAdvancements()
-								.getProgress(((WorldServer) (entity).world).getAdvancementManager()
-										.getAdvancement(new ResourceLocation("youranmod:a_spcial_village")))
-								.isDone()
-						: false)) {
-					if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-						((EntityPlayer) entity).sendStatusMessage(
-								new TextComponentString("\u00A72\u6B63\u5728\u4F20\u9001\u81F3\u201C\u4E3B\u57CE-\u5E9F\u7269\u201D"), (false));
-					}
-					{
-						Map<String, Object> $_dependencies = new HashMap<>();
-						$_dependencies.put("entity", entity);
-						ProcedureTptoFeiwu.executeProcedure($_dependencies);
-					}
-				} else {
-					if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-						((EntityPlayer) entity).sendStatusMessage(new TextComponentString(
-								"\u00A74\u60A8\u5C1A\u672A\u5B8C\u6210\u524D\u7F6E\u6210\u5C31\uFF01\u65E0\u6CD5\u4F7F\u7528\u8BE5\u4F20\u9001\u70B9\uFF01"),
-								(false));
-					}
-				}
-			} else {
-				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-					((EntityPlayer) entity).sendStatusMessage(
-							new TextComponentString("\u00A74\u8FD0\u884C\u201C/youran tp help\u201D\u6765\u83B7\u53D6\u6307\u4EE4\u5E2E\u52A9"),
-							(false));
-				}
 			}
 		} else {
 			returnvalue = (String) "What are you doing?";
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A7e\u6307\u4EE4\u4F7F\u7528\u5E2E\u52A9\uFF1A"), (false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran about - \u5173\u4E8E\u670D\u52A1\u5668"), (false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity)
-						.sendStatusMessage(new TextComponentString("\u00A76youran back - \u4ECE\u4E3B\u57CE\u8FD4\u56DE\u4E3B\u4E16\u754C"), (false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran help - \u663E\u793A\u5E2E\u52A9\u4FE1\u606F"),
-						(false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran maincity - \u524D\u5F80\u4E3B\u57CE"), (false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(
-						new TextComponentString("\u00A76youran serverhelp - \u524D\u5F80\u670D\u52A1\u5668\u7F51\u9875\u624B\u518C"), (false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(
-						new TextComponentString("\u00A76youran temperature - \u83B7\u53D6\u6240\u5904\u5730\u76EE\u524D\u7684\u6E29\u5EA6"), (false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran tp - \u4F20\u9001\u81F3\u4E00\u4E9B\u5730\u65B9"),
-						(false));
-			}
-			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
-				((EntityPlayer) entity)
-						.sendStatusMessage(new TextComponentString("\u00A76youran website - \u524D\u5F80\u670D\u52A1\u5668\u5B98\u7F51"), (false));
-			}
+			IsGetHelp = (boolean) (true);
 		}
 		if (((((entity instanceof EntityPlayerMP) && ((entity).world instanceof WorldServer))
 				? ((EntityPlayerMP) entity).getAdvancements()
@@ -690,6 +585,48 @@ public class ProcedureYouranCommand extends ElementsYouranmodMod.ModElement {
 						((EntityPlayerMP) entity).getAdvancements().grantCriterion(_adv, _criterion);
 					}
 				}
+			}
+		}
+		if (((IsGetHelp) == (true))) {
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A7e\u6307\u4EE4\u4F7F\u7528\u5E2E\u52A9\uFF1A"), (false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran about - \u5173\u4E8E\u670D\u52A1\u5668"), (false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity)
+						.sendStatusMessage(new TextComponentString("\u00A76youran back - \u4ECE\u4E3B\u57CE\u8FD4\u56DE\u4E3B\u4E16\u754C"), (false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran help - \u663E\u793A\u8BE5\u5E2E\u52A9\u4FE1\u606F"),
+						(false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran maincity - \u524D\u5F80\u4E3B\u57CE"), (false));
+			}
+			if ((entity.canUseCommand((int) 2, ""))) {
+				if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+					((EntityPlayer) entity).sendStatusMessage(new TextComponentString("\u00A76youran saveD - \u7ED9D\u7EA7\u4EBA\u5458\u56DE\u8840"),
+							(false));
+				}
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(
+						new TextComponentString("\u00A76youran serverhelp - \u524D\u5F80\u670D\u52A1\u5668\u7F51\u9875\u624B\u518C"), (false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(
+						new TextComponentString("\u00A76youran temperature - \u83B7\u53D6\u6240\u5904\u5730\u76EE\u524D\u7684\u6E29\u5EA6"), (false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity).sendStatusMessage(new TextComponentString(
+						"\u00A76youran tp - \u4F20\u9001\u81F3\u4E00\u4E9B\u5730\u65B9\uFF08\u6CE8\uFF1Ayouran tp list \u53EF\u5217\u51FA\u5F53\u524D\u6240\u6709\u4F20\u9001\u70B9\uFF09"),
+						(false));
+			}
+			if (entity instanceof EntityPlayer && !entity.world.isRemote) {
+				((EntityPlayer) entity)
+						.sendStatusMessage(new TextComponentString("\u00A76youran website - \u524D\u5F80\u670D\u52A1\u5668\u5B98\u7F51"), (false));
 			}
 		}
 		return (returnvalue);

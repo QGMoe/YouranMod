@@ -33,7 +33,7 @@ public class ItemPrimogemsword extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:primogem_sword")
 	public static final Item block = null;
 	public ItemPrimogemsword(ElementsYouranmodMod instance) {
-		super(instance, 46);
+		super(instance, 16);
 	}
 
 	@Override

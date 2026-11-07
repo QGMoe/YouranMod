@@ -18,7 +18,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureHuanYinLaiDaoZhuChengDaTin extends ElementsYouranmodMod.ModElement {
 	public ProcedureHuanYinLaiDaoZhuChengDaTin(ElementsYouranmodMod instance) {
-		super(instance, 21);
+		super(instance, 32);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

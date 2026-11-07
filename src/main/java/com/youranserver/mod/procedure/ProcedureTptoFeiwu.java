@@ -15,7 +15,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class ProcedureTptoFeiwu extends ElementsYouranmodMod.ModElement {
 	public ProcedureTptoFeiwu(ElementsYouranmodMod instance) {
-		super(instance, 43);
+		super(instance, 48);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

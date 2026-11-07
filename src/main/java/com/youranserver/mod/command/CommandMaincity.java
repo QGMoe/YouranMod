@@ -23,7 +23,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class CommandMaincity extends ElementsYouranmodMod.ModElement {
 	public CommandMaincity(ElementsYouranmodMod instance) {
-		super(instance, 25);
+		super(instance, 36);
 	}
 
 	@Override

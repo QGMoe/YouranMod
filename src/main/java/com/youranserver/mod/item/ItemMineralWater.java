@@ -27,7 +27,7 @@ public class ItemMineralWater extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:mineral_water")
 	public static final Item block = null;
 	public ItemMineralWater(ElementsYouranmodMod instance) {
-		super(instance, 50);
+		super(instance, 18);
 	}
 
 	@Override

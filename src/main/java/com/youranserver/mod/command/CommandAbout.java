@@ -23,7 +23,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class CommandAbout extends ElementsYouranmodMod.ModElement {
 	public CommandAbout(ElementsYouranmodMod instance) {
-		super(instance, 32);
+		super(instance, 40);
 	}
 
 	@Override

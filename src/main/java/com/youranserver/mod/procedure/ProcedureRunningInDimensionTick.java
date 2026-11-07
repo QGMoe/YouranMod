@@ -16,14 +16,14 @@ import java.util.Map;
 import com.youranserver.mod.ElementsYouranmodMod;
 
 @ElementsYouranmodMod.ModElement.Tag
-public class ProcedureDynmap extends ElementsYouranmodMod.ModElement {
-	public ProcedureDynmap(ElementsYouranmodMod instance) {
-		super(instance, 36);
+public class ProcedureRunningInDimensionTick extends ElementsYouranmodMod.ModElement {
+	public ProcedureRunningInDimensionTick(ElementsYouranmodMod instance) {
+		super(instance, 58);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("world") == null) {
-			System.err.println("Failed to load dependency world for procedure Dynmap!");
+			System.err.println("Failed to load dependency world for procedure RunningInDimensionTick!");
 			return;
 		}
 		World world = (World) dependencies.get("world");
@@ -65,6 +65,85 @@ public class ProcedureDynmap extends ElementsYouranmodMod.ModElement {
 						return new Vec3d(0, 64, 0);
 					}
 				}, "dynmap updaterender world 0 0");
+			}
+		}
+		if (((world.getWorldTime()) == 23000)) {
+			if (!world.isRemote && world.getMinecraftServer() != null) {
+				world.getMinecraftServer().getCommandManager().executeCommand(new ICommandSender() {
+					@Override
+					public String getName() {
+						return "";
+					}
+
+					@Override
+					public boolean canUseCommand(int permission, String command) {
+						return true;
+					}
+
+					@Override
+					public World getEntityWorld() {
+						return world;
+					}
+
+					@Override
+					public MinecraftServer getServer() {
+						return world.getMinecraftServer();
+					}
+
+					@Override
+					public boolean sendCommandFeedback() {
+						return false;
+					}
+
+					@Override
+					public BlockPos getPosition() {
+						return new BlockPos((int) 0, (int) 64, (int) 0);
+					}
+
+					@Override
+					public Vec3d getPositionVector() {
+						return new Vec3d(0, 64, 0);
+					}
+				}, "/effect @e[type=scp:dpersonnel] minecraft:instant_health 1 100");
+			}
+		} else if (((world.getWorldTime()) == 6000)) {
+			if (!world.isRemote && world.getMinecraftServer() != null) {
+				world.getMinecraftServer().getCommandManager().executeCommand(new ICommandSender() {
+					@Override
+					public String getName() {
+						return "";
+					}
+
+					@Override
+					public boolean canUseCommand(int permission, String command) {
+						return true;
+					}
+
+					@Override
+					public World getEntityWorld() {
+						return world;
+					}
+
+					@Override
+					public MinecraftServer getServer() {
+						return world.getMinecraftServer();
+					}
+
+					@Override
+					public boolean sendCommandFeedback() {
+						return false;
+					}
+
+					@Override
+					public BlockPos getPosition() {
+						return new BlockPos((int) 0, (int) 64, (int) 0);
+					}
+
+					@Override
+					public Vec3d getPositionVector() {
+						return new Vec3d(0, 64, 0);
+					}
+				}, "/effect @e[type=scp:dpersonnel] minecraft:instant_health 1 2");
 			}
 		}
 	}

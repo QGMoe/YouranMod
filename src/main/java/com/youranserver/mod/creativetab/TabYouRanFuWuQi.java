@@ -13,7 +13,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class TabYouRanFuWuQi extends ElementsYouranmodMod.ModElement {
 	public TabYouRanFuWuQi(ElementsYouranmodMod instance) {
-		super(instance, 14);
+		super(instance, 25);
 	}
 
 	@Override

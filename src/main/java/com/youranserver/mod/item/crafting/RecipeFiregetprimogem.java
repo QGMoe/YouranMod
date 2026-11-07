@@ -13,7 +13,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class RecipeFiregetprimogem extends ElementsYouranmodMod.ModElement {
 	public RecipeFiregetprimogem(ElementsYouranmodMod instance) {
-		super(instance, 33);
+		super(instance, 41);
 	}
 
 	@Override

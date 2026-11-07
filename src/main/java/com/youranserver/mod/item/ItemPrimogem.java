@@ -24,7 +24,7 @@ public class ItemPrimogem extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:primogem")
 	public static final Item block = null;
 	public ItemPrimogem(ElementsYouranmodMod instance) {
-		super(instance, 11);
+		super(instance, 13);
 	}
 
 	@Override

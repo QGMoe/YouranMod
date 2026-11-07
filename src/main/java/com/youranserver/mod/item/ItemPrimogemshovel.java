@@ -24,7 +24,7 @@ public class ItemPrimogemshovel extends ElementsYouranmodMod.ModElement {
 	@GameRegistry.ObjectHolder("youranmod:primogem_shovel")
 	public static final Item block = null;
 	public ItemPrimogemshovel(ElementsYouranmodMod instance) {
-		super(instance, 49);
+		super(instance, 17);
 	}
 
 	@Override

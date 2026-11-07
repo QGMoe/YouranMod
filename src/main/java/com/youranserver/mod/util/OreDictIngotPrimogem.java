@@ -12,7 +12,7 @@ import com.youranserver.mod.ElementsYouranmodMod;
 @ElementsYouranmodMod.ModElement.Tag
 public class OreDictIngotPrimogem extends ElementsYouranmodMod.ModElement {
 	public OreDictIngotPrimogem(ElementsYouranmodMod instance) {
-		super(instance, 47);
+		super(instance, 50);
 	}
 
 	@Override
