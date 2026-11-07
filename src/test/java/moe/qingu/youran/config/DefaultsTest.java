@@ -56,9 +56,6 @@ class DefaultsTest {
     void others() {
         assertEquals("scp:dpersonnel", DPersonnelConfig.entity);
         assertEquals(100, DPersonnelConfig.saveDAmplifier);
-        assertEquals("dynmap updaterender world 0 0", DynmapConfig.command);
-        assertEquals(0, DynmapConfig.dimension);
-        assertEquals(1000, DynmapConfig.worldTime);
         assertEquals(0.3, ItemConfig.swordXpChance);
         assertEquals(3, ItemConfig.swordXpMax);
         assertEquals(0.1, ItemConfig.swordHealChance);

@@ -1,6 +1,5 @@
 package moe.qingu.youran.server;
 
-import moe.qingu.youran.config.DynmapConfig;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -24,11 +23,6 @@ public final class WorldTickHandler {
             return;
         }
         long time = world.getWorldTime();
-        // Dynmap 更新渲染：没装 Dynmap 时没有这条指令，指令系统回一句“未知指令”给这个不输出的执行者，等于什么都不做
-        if (world.provider.getDimension() == DynmapConfig.dimension && time == DynmapConfig.worldTime
-                && world.getCurrentMoonPhaseFactor() == 1) {
-            server.getCommandManager().executeCommand(new SilentCommandSender(world), DynmapConfig.command);
-        }
         // D 级人员定时回血（每个维度到点都触发一次，回的是所有维度里的 D 级人员，同 1.3.4）
         OptionalInt amplifier = Settings.healSchedule.amplifierAt(time);
         if (amplifier.isPresent()) {
