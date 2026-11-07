@@ -22,6 +22,8 @@ import java.util.Random;
  * 矿石的生成（1.3.4 各方块元素的 generateWorld）。四种矿石共用 Forge 给这个生成器的随机源，顺序与 1.3.4 相同
  * （坚冰、奇怪的矿石、闪锌矿、汞），每次先取 x、再取 y、再取 z，所以同一种子下与 1.3.4 生成在同样的位置。
  * <p>
+ * 唯一的不同：汞不再替换基岩（服主 11-07）。
+ * <p>
  * 矿脉位置是“区块角 + 0–15”，没有原版的 +8 偏移（同 1.3.4），矿脉可能伸进 -x、-z 方向的邻居区块（已知问题，见 README）。
  */
 public class OreGenerator implements IWorldGenerator {
@@ -31,7 +33,9 @@ public class OreGenerator implements IWorldGenerator {
             || is(s, Blocks.LIT_REDSTONE_ORE) || is(s, Blocks.GRAVEL) || is(s, Blocks.MAGMA) || is(s, Blocks.QUARTZ_ORE)
             || isPlainDirt(s) || is(s, Blocks.BEDROCK);
     private static final Predicate<IBlockState> SPHALERITE_TARGET = s -> is(s, Blocks.STONE);
-    private static final Predicate<IBlockState> HYDRARGYRUM_TARGET = s -> is(s, Blocks.STONE) || isPlainDirt(s) || is(s, Blocks.BEDROCK);
+    /** 1.3.4 还能替换基岩，汞（流体）被桶装走后基岩层出洞；服主 11-07 去掉基岩 */
+    private static final Predicate<IBlockState> HYDRARGYRUM_TARGET = s -> is(s, Blocks.STONE) || isPlainDirt(s);
+    // 奇怪的矿石替换基岩（含 y=0 那一层）是服主特意写的，保持不变
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator generator, IChunkProvider provider) {

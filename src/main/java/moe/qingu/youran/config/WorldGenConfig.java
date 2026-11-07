@@ -10,13 +10,13 @@ public final class WorldGenConfig {
     @Config.Comment("坚冰：末地（The End 群系）的石头、末地石里。")
     public static final Ore hardIce = new Ore(new int[]{1}, 0, 99, 3, 7, new String[]{"minecraft:sky"});
 
-    @Config.Comment("奇怪的矿石：主世界、下界、末地的底层，可替换石头、末地石、下界岩、煤矿、铁矿、红石矿、沙砾、岩浆块、石英矿、泥土、基岩。")
+    @Config.Comment("奇怪的矿石：主世界、下界、末地的底层，可替换石头、末地石、下界岩、煤矿、铁矿、红石矿、沙砾、岩浆块、石英矿、泥土、基岩（含 y=0 那一层，服主特意写的）。")
     public static final Ore primogemOre = new Ore(new int[]{0, -1, 1}, 1, 11, 1, 3, new String[0]);
 
     @Config.Comment("闪锌矿：主世界的石头里。")
     public static final Ore sphaleriteOre = new Ore(new int[]{0}, 1, 39, 3, 5, new String[0]);
 
-    @Config.Comment("汞（流体方块）：主世界的石头、泥土、基岩里。")
+    @Config.Comment("汞（流体方块）：主世界的石头、泥土里（1.3.4 还能替换基岩，服主 11-07 去掉）。")
     public static final Ore hydrargyrum = new Ore(new int[]{0}, 1, 40, 1, 4, new String[0]);
 
     @Config.Comment({"矿泉水湖（与原版的湖相同的形状，16×8×16 以内）。",
