@@ -28,6 +28,17 @@ class DefaultsTest {
         assertEquals("docs.youran.qingu.moe", LinkConfig.manualText);
         assertEquals("https://play.mcmod.cn/sv20185890.html", LinkConfig.mcmodUrl);
         assertEquals("play.mcmod.cn/sv20185890.html", LinkConfig.mcmodText);
+        assertEquals("https://docs.qq.com/doc/DVHpzQUdQSlFuT0ha", LinkConfig.rulesUrl);
+        assertEquals("953168624", LinkConfig.qqGroup);
+        assertEquals("https://jq.qq.com/?_wv=1027&k=Hwv4w2NU", LinkConfig.qqGroupUrl);
+    }
+
+    /** 配置的默认值算出来的同步配置等于 SharedSettings 的默认值，且没有警告 */
+    @Test
+    void sharedDefaults() {
+        java.util.List<String> problems = new java.util.ArrayList<>();
+        assertEquals(moe.qingu.youran.logic.SharedSettings.DEFAULTS, SharedConfig.build(problems));
+        assertEquals(java.util.Collections.emptyList(), problems);
     }
 
     @Test

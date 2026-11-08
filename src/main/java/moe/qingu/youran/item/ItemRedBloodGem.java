@@ -1,5 +1,6 @@
 package moe.qingu.youran.item;
 
+import moe.qingu.youran.logic.SharedState;
 import moe.qingu.youran.registry.YouranTab;
 import moe.qingu.youran.server.ItemEffects;
 import net.minecraft.client.util.ITooltipFlag;
@@ -20,7 +21,8 @@ import java.util.List;
  * 血红宝石（youranmod:red_blood_gem），60 点耐久，没用过的能叠 64 个。
  * <p>
  * 右键（1.3.4 的 KillOldMan）：在自己脚下劈一道闪电；杀死附近的 SCP-106（{@code scp:old_man}，10 格）与它的
- * D 级形态（{@code scp:old_man_d}，5 格）；自己受 5 点魔法伤害；宝石掉 1 点耐久，用完时少一个、下一个从满耐久开始。
+ * D 级形态（{@code scp:old_man_d}，5 格）；自己受 5 点魔法伤害；宝石掉 1 点耐久（配置，同步给客户端），用完时少一个、
+ * 下一个从满耐久开始。
  * 没有冷却。
  */
 public class ItemRedBloodGem extends Item {
@@ -58,7 +60,7 @@ public class ItemRedBloodGem extends Item {
         if (!world.isRemote) {
             ItemEffects.redBloodGem(world, player, x, y, z);
         }
-        if (stack.attemptDamageItem(1, world.rand, null)) {
+        if (stack.attemptDamageItem(SharedState.get(world.isRemote).redBloodGemDurabilityCost, world.rand, null)) {
             stack.shrink(1);
             stack.setItemDamage(0);
         }

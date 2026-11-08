@@ -76,9 +76,9 @@ public final class ModItems {
         primogemAxe = add(registry, ItemPrimogemTools.axe());
         primogemSword = add(registry, new ItemPrimogemSword());
         primogemShovel = add(registry, ItemPrimogemTools.shovel());
-        mineralWater = add(registry, new ItemDrink("mineral_water", 1, 0.3f, false));
+        mineralWater = add(registry, new ItemDrink("mineral_water", s -> s.mineralWaterHunger, s -> s.mineralWaterSaturation, false));
         mineralWaterBottle = add(registry, new ItemWaterBottle());
-        drinkingWater = add(registry, new ItemDrink("drinkingwater", 0, 0.2f, true));
+        drinkingWater = add(registry, new ItemDrink("drinkingwater", s -> s.drinkingWaterHunger, s -> s.drinkingWaterSaturation, true));
         add(registry, itemBlock(ModBlocks.mineralWater));
         add(registry, itemBlock(ModBlocks.hydrargyrum));
         add(registry, itemBlock(ModBlocks.gallium));

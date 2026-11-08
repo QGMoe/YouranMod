@@ -1,7 +1,8 @@
 package moe.qingu.youran.server.command;
 
 import moe.qingu.youran.config.DPersonnelConfig;
-import moe.qingu.youran.config.LinkConfig;
+import moe.qingu.youran.logic.SharedSettings;
+import moe.qingu.youran.logic.SharedState;
 import moe.qingu.youran.logic.Completions;
 import moe.qingu.youran.logic.TeleportPoints;
 import moe.qingu.youran.logic.Texts;
@@ -38,10 +39,11 @@ public class CommandYouran extends SimpleCommand {
             return;
         }
         String sub = args.length > 0 ? args[0] : "";
+        SharedSettings links = SharedState.server();
         boolean showHelp = false;
         switch (sub) {
             case "website":
-                Chat.link(entity, Texts.WEBSITE_LABEL, LinkConfig.websiteText, LinkConfig.websiteUrl);
+                Chat.link(entity, Texts.WEBSITE_LABEL, links.websiteText, links.websiteUrl);
                 break;
             case "saveD":
                 if (entity.canUseCommand(2, "")) {
@@ -52,7 +54,7 @@ public class CommandYouran extends SimpleCommand {
                 }
                 break;
             case "serverhelp":
-                Chat.link(entity, Texts.MANUAL_LABEL, LinkConfig.manualText, LinkConfig.manualUrl);
+                Chat.link(entity, Texts.MANUAL_LABEL, links.manualText, links.manualUrl);
                 break;
             case "maincity":
                 Chat.tell(entity, Texts.GOING_TO_MAIN_CITY);
@@ -67,9 +69,9 @@ public class CommandYouran extends SimpleCommand {
                 for (String line : Texts.ABOUT) {
                     Chat.tell(entity, line);
                 }
-                Chat.link(entity, Texts.WEBSITE_LABEL, LinkConfig.websiteText, LinkConfig.websiteUrl);
-                Chat.link(entity, Texts.MCMOD_LABEL, LinkConfig.mcmodText, LinkConfig.mcmodUrl);
-                Chat.link(entity, Texts.MANUAL_LABEL, LinkConfig.manualText, LinkConfig.manualUrl);
+                Chat.link(entity, Texts.WEBSITE_LABEL, links.websiteText, links.websiteUrl);
+                Chat.link(entity, Texts.MCMOD_LABEL, links.mcmodText, links.mcmodUrl);
+                Chat.link(entity, Texts.MANUAL_LABEL, links.manualText, links.manualUrl);
                 break;
             case "temperature": {
                 // 位置是执行位置（/execute 时是指定的位置），世界是执行者所在的世界（同 1.3.4）

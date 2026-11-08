@@ -1,5 +1,6 @@
 package moe.qingu.youran.item;
 
+import moe.qingu.youran.logic.SharedState;
 import moe.qingu.youran.registry.ModBlocks;
 import moe.qingu.youran.registry.YouranTab;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +14,7 @@ import net.minecraft.world.World;
 
 /**
  * 奇怪的工具（youranmod:home），64 点耐久：对着悠然 Logo 块框架里面点一下，点燃主城传送门。
- * 同 1.3.4：点在哪一面就看那一面外面那一格，是空气才试着点燃；不论点没点燃都掉 1 点耐久；两端都执行。
+ * 同 1.3.4：点在哪一面就看那一面外面那一格，是空气才试着点燃；不论点没点燃都掉 1 点耐久（配置，同步给客户端）；两端都执行。
  */
 public class ItemHome extends Item {
     public ItemHome() {
@@ -35,7 +36,7 @@ public class ItemHome extends Item {
         if (world.isAirBlock(target)) {
             ModBlocks.mainCityPortal.tryIgnite(world, target);
         }
-        stack.damageItem(1, player);
+        stack.damageItem(SharedState.get(world.isRemote).homeToolDurabilityCost, player);
         return EnumActionResult.SUCCESS;
     }
 }

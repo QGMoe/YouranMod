@@ -1,5 +1,6 @@
 package moe.qingu.youran;
 
+import moe.qingu.youran.net.YouranNetwork;
 import moe.qingu.youran.config.ServerConfig;
 import moe.qingu.youran.registry.ModBlocks;
 import moe.qingu.youran.registry.ModFluids;
@@ -46,6 +47,8 @@ public final class YouranMod {
             ServerConfig.loadOnDedicatedServer();
         }
         // 顺序同 1.3.4：流体与创造模式物品栏在方块、物品的注册事件之前
+        // 两端都登记网络频道（同步配置）
+        YouranNetwork.register();
         ModFluids.register();
         YouranTab.create();
         MainCity.register();

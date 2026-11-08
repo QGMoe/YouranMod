@@ -1,5 +1,7 @@
 package moe.qingu.youran.server;
 
+import moe.qingu.youran.config.SharedConfig;
+import moe.qingu.youran.logic.SharedState;
 import moe.qingu.youran.YouranMod;
 import moe.qingu.youran.config.DPersonnelConfig;
 import moe.qingu.youran.config.ItemConfig;
@@ -9,6 +11,7 @@ import moe.qingu.youran.logic.KeyValues;
 import moe.qingu.youran.logic.RadiusTargets;
 import moe.qingu.youran.logic.TeleportPoints;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +26,11 @@ final class Settings {
     }
 
     static void reload() {
+        List<String> shared = new ArrayList<>();
+        SharedState.setServer(SharedConfig.build(shared));
+        for (String p : shared) {
+            YouranMod.LOG.warn("配置有一项不对：{}", p);
+        }
         KeyValues.Result<HealSchedule.Point> heal = HealSchedule.parse(DPersonnelConfig.healSchedule);
         warn("dpersonnel.healSchedule", heal.errors);
         healSchedule = HealSchedule.of(heal.values);
