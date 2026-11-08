@@ -24,7 +24,7 @@ import java.util.Random;
  * <p>
  * 唯一的不同：汞不再替换基岩（服主 11-07）。
  * <p>
- * 矿脉位置是“区块角 + 0–15”，没有原版的 +8 偏移（同 1.3.4），矿脉可能伸进 -x、-z 方向的邻居区块（已知问题，见 README）。
+ * 矿脉位置是“区块角 + 0–15”，没有原版的 +8 偏移（同 1.3.4），矿脉可能伸进 -x、-z 方向的邻居区块（已知问题）。
  */
 public class OreGenerator implements IWorldGenerator {
     private static final Predicate<IBlockState> HARD_ICE_TARGET = s -> is(s, Blocks.STONE) || is(s, Blocks.END_STONE);

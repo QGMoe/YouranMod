@@ -12,7 +12,7 @@ import net.minecraftforge.common.config.ConfigManager;
  * <p>
  * 客户端也要用的项（链接、碰到汞 / 镓 / 氯气的效果等，注释里写了“同步给客户端”）由 {@link SharedConfig} 算出来，
  * 玩家登录时发给客户端（{@code net.SyncSettingsMessage}）；客户端连着服务器时用发来的值，断开后回到默认值。
- * 注册时就定死的属性（耐久、伤害、硬度等）不做配置，见 README。
+ * 注册时就定死的属性（耐久、伤害、硬度等）不做配置。
  * 所有配置都在开服时读一次，改了要重启服务器。
  */
 public final class ServerConfig {

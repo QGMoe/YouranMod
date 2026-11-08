@@ -4,7 +4,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-/** 网络频道 {@code youranmod}（1.3.4 的 MCreator 频道 {@code youranmod:a} 已去掉，见 README）。现在只有一种包：同步配置。 */
+/** 网络频道 {@code youranmod}（1.3.4 的 MCreator 频道 {@code youranmod:a} 已去掉）。现在只有一种包：同步配置。 */
 public final class YouranNetwork {
     public static final SimpleNetworkWrapper CHANNEL = NetworkRegistry.INSTANCE.newSimpleChannel("youranmod");
 

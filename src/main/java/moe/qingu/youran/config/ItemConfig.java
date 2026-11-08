@@ -4,7 +4,7 @@ import net.minecraftforge.common.config.Config;
 
 /**
  * 物品效果。标了“同步给客户端”的项两端都要算（客户端预测），玩家登录时发给客户端（见 {@code logic.SharedSettings}）；
- * 其余只在服务端算。注册时就定死的属性（耐久、伤害、挖掘等级、叠放数量等）不做配置，见 README。
+ * 其余只在服务端算。注册时就定死的属性（耐久、伤害、挖掘等级、叠放数量等）不做配置。
  */
 @Config(modid = ServerConfig.KEY, name = ServerConfig.FILE, category = "items")
 public final class ItemConfig {
