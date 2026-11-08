@@ -1,41 +1,38 @@
 package moe.qingu.youran.world.portal;
 
-import com.google.common.cache.LoadingCache;
-import moe.qingu.youran.registry.ModBlocks;
+import moe.qingu.youran.server.Teleports;
 import moe.qingu.youran.world.MainCity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.lang.reflect.Field;
 import java.util.Random;
 
 /**
- * 主城传送门（youranmod:home_portal）：悠然 Logo 块的框架，用“奇怪的工具”点燃。
- * 玩家（不骑乘、不被骑乘）走进去：不在主城就去主城，在主城就回主世界；目的地附近 128 格内没有传送门就用 Logo 块造一个。
- * 只传送玩家。不可破坏，亮度 15，不会像下界传送门那样刷僵尸猪人。
+ * 主城传送门（youranmod:home_portal）：悠然 Logo 块的框架，用“奇怪的工具”点燃。不可破坏，亮度 15，不会像下界传送门那样刷僵尸猪人。
+ * <p>
+ * 服主 11-08 定：
+ * <ul>
+ *   <li>在主城以外的维度走进去，效果与 /hub 完全一样（{@link Teleports#toMainCity}：主城传送点、欢迎语与进度、先下坐骑、
+ *   主城维度没启用时的提示）。不再像 1.3.4 那样按坐标比例换算、在目的地找门或造门。只传送玩家；同 1.3.4 走进去就传，
+ *   站在门里时冷却一直刷新（{@code timeUntilPortal}），不会反复传。</li>
+ *   <li>主城维度里不会有传送门：在主城里点不燃；放下的、被更新的、被随机 tick 到的、被实体碰到的传送门方块直接消失
+ *   （框架不动）。1.3.4 时留在主城里的门由 {@code server.MainCityChunks} 在区块加载时清掉。</li>
+ * </ul>
+ * 骑着东西走进去：骑在上面的玩家也会碰到传送门（原版生物每 tick 都在原地做一次碰撞），于是同 /hub 先下坐骑再传送，
+ * 坐骑留在门里（1.3.4 骑乘、被骑时不传送）。
  */
 public class BlockMainCityPortal extends BlockPortal {
-    /** EntityPlayerMP.invulnerableDimensionChange（换维度时暂时不受伤，原版下界传送门也这样设） */
-    private static Field invulnerableDimensionChange;
-
     public BlockMainCityPortal() {
         setHardness(-1.0F);
         setRegistryName("home_portal");
@@ -43,13 +40,39 @@ public class BlockMainCityPortal extends BlockPortal {
         setLightLevel(1F);
     }
 
-    @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random random) {
-        // 不刷僵尸猪人
+    /** 这个世界是主城维度（主城维度启用时） */
+    static boolean inMainCity(World world) {
+        return MainCity.isAvailable() && world.provider.getDimension() == MainCity.DIM_ID;
     }
 
-    /** “奇怪的工具”点燃：先试南北向（X 轴）框架，再试东西向（Z 轴）；框架里已有传送门方块时不点 */
+    /** 主城维度里的传送门方块直接消失（服务端；客户端随后收到方块变化） */
+    private static boolean removedInMainCity(World world, BlockPos pos) {
+        if (!inMainCity(world)) {
+            return false;
+        }
+        if (!world.isRemote) {
+            world.setBlockToAir(pos);
+        }
+        return true;
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random) {
+        // 不刷僵尸猪人；主城维度里被随机 tick 到时消失
+        removedInMainCity(world, pos);
+    }
+
+    @Override
+    public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
+        // 主城维度里放下（物品形式、/setblock 等）就消失
+        removedInMainCity(world, pos);
+    }
+
+    /** “奇怪的工具”点燃：先试南北向（X 轴）框架，再试东西向（Z 轴）；框架里已有传送门方块时不点。主城维度里点不燃 */
     public void tryIgnite(World world, BlockPos pos) {
+        if (inMainCity(world)) {
+            return;
+        }
         PortalSize size = new PortalSize(world, pos, EnumFacing.Axis.X);
         if (size.isValid() && size.portalBlockCount == 0) {
             size.placePortalBlocks();
@@ -61,53 +84,17 @@ public class BlockMainCityPortal extends BlockPortal {
         }
     }
 
-    @Override
-    public BlockPattern.PatternHelper createPatternHelper(World world, BlockPos pos) {
-        EnumFacing.Axis axis = EnumFacing.Axis.Z;
-        PortalSize size = new PortalSize(world, pos, EnumFacing.Axis.X);
-        LoadingCache<BlockPos, BlockWorldState> cache = BlockPattern.createLoadingCache(world, true);
-        if (!size.isValid()) {
-            axis = EnumFacing.Axis.X;
-            size = new PortalSize(world, pos, EnumFacing.Axis.Z);
-        }
-        if (!size.isValid()) {
-            return new BlockPattern.PatternHelper(pos, EnumFacing.NORTH, EnumFacing.UP, cache, 1, 1, 1);
-        }
-        int[] counts = new int[EnumFacing.AxisDirection.values().length];
-        EnumFacing facing = size.rightDir.rotateYCCW();
-        BlockPos topLeft = size.bottomLeft.up(size.getHeight() - 1);
-        for (EnumFacing.AxisDirection direction : EnumFacing.AxisDirection.values()) {
-            BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(
-                    facing.getAxisDirection() == direction ? topLeft : topLeft.offset(size.rightDir, size.getWidth() - 1),
-                    EnumFacing.getFacingFromAxis(direction, axis), EnumFacing.UP, cache, size.getWidth(), size.getHeight(), 1);
-            for (int i = 0; i < size.getWidth(); ++i) {
-                for (int j = 0; j < size.getHeight(); ++j) {
-                    BlockWorldState state = helper.translateOffset(i, j, 1);
-                    if (state.getBlockState() != null && state.getBlockState().getMaterial() != Material.AIR) {
-                        ++counts[direction.ordinal()];
-                    }
-                }
-            }
-        }
-        EnumFacing.AxisDirection best = EnumFacing.AxisDirection.POSITIVE;
-        for (EnumFacing.AxisDirection direction : EnumFacing.AxisDirection.values()) {
-            if (counts[direction.ordinal()] < counts[best.ordinal()]) {
-                best = direction;
-            }
-        }
-        return new BlockPattern.PatternHelper(
-                facing.getAxisDirection() == best ? topLeft : topLeft.offset(size.rightDir, size.getWidth() - 1),
-                EnumFacing.getFacingFromAxis(best, axis), EnumFacing.UP, cache, size.getWidth(), size.getHeight(), 1);
-    }
-
-    /** 框架不完整、或传送门没填满时，这一格消失 */
+    /** 框架不完整、或传送门没填满时，这一格消失；主城维度里一被更新就消失 */
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+        if (removedInMainCity(world, pos)) {
+            return;
+        }
         EnumFacing.Axis axis = state.getValue(AXIS);
         if (axis == EnumFacing.Axis.X || axis == EnumFacing.Axis.Z) {
             PortalSize size = new PortalSize(world, pos, axis);
             if (!size.isValid() || size.portalBlockCount < size.width * size.height) {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                world.setBlockToAir(pos);
             }
         }
     }
@@ -140,10 +127,7 @@ public class BlockMainCityPortal extends BlockPortal {
 
     @Override
     public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
-        if (world.isRemote || entity.isRiding() || entity.isBeingRidden() || !(entity instanceof EntityPlayerMP)) {
-            return;
-        }
-        if (!MainCity.isAvailable()) {
+        if (world.isRemote || removedInMainCity(world, pos) || !(entity instanceof EntityPlayerMP)) {
             return;
         }
         EntityPlayerMP player = (EntityPlayerMP) entity;
@@ -152,34 +136,6 @@ public class BlockMainCityPortal extends BlockPortal {
             return;
         }
         player.timeUntilPortal = 10;
-        int target = player.dimension != MainCity.DIM_ID ? MainCity.DIM_ID : 0;
-        setInvulnerableDimensionChange(player);
-        player.server.getPlayerList().transferPlayerToDimension(player, target, teleporterFor(player, pos, target));
-    }
-
-    /** 记下玩家在传送门里的相对位置与朝向，到目的地的传送门里放到对应的位置（同原版 Entity.setPortal） */
-    private MainCityTeleporter teleporterFor(EntityPlayerMP player, BlockPos pos, int dimension) {
-        BlockPattern.PatternHelper helper = ModBlocks.mainCityPortal.createPatternHelper(player.world, pos);
-        double edge = helper.getForwards().getAxis() == EnumFacing.Axis.X
-                ? (double) helper.getFrontTopLeft().getZ()
-                : (double) helper.getFrontTopLeft().getX();
-        double across = helper.getForwards().getAxis() == EnumFacing.Axis.X ? player.posZ : player.posX;
-        across = Math.abs(MathHelper.pct(
-                across - (double) (helper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE ? 1 : 0),
-                edge, edge - (double) helper.getWidth()));
-        double up = MathHelper.pct(player.posY - 1, (double) helper.getFrontTopLeft().getY(),
-                (double) (helper.getFrontTopLeft().getY() - helper.getHeight()));
-        return new MainCityTeleporter(player.server.getWorld(dimension), new Vec3d(across, up, 0), helper.getForwards());
-    }
-
-    private static void setInvulnerableDimensionChange(EntityPlayerMP player) {
-        if (invulnerableDimensionChange == null) {
-            invulnerableDimensionChange = ReflectionHelper.findField(EntityPlayerMP.class, "invulnerableDimensionChange", "field_184851_cj");
-        }
-        try {
-            invulnerableDimensionChange.setBoolean(player, true);
-        } catch (IllegalAccessException e) {
-            throw new IllegalStateException(e);
-        }
+        Teleports.toMainCity(player);
     }
 }

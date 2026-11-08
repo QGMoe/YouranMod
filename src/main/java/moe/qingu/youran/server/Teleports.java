@@ -26,7 +26,7 @@ public final class Teleports {
     private Teleports() {
     }
 
-    /** 去主城传送点 */
+    /** 去主城传送点（/hub、/youran maincity；在主城以外的维度走进主城传送门也是这个，服主 11-08） */
     public static void toMainCity(Entity entity) {
         toPointInMainCity(entity, TeleportConfig.mainCityX, TeleportConfig.mainCityY, TeleportConfig.mainCityZ);
     }
