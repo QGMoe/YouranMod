@@ -2,5 +2,15 @@
 "name": "悠然服务器手册",
 "landing_text": "patchouli_books.youranbook.langding_text",
 "version": "1001",
-"subtitle": "Qiguai 著"
+"subtitle": "Qiguai 著",
+"macros": {
+    "$(yr_site)": "https://youran.qingu.moe/",
+    "$(yr_site_text)": "youran.qingu.moe",
+    "$(yr_docs)": "https://docs.youran.qingu.moe/",
+    "$(yr_docs_text)": "docs.youran.qingu.moe",
+    "$(yr_mcmod)": "https://play.mcmod.cn/sv20185890.html",
+    "$(yr_rules)": "https://docs.qq.com/doc/DVHpzQUdQSlFuT0ha",
+    "$(yr_qq)": "953168624",
+    "$(yr_qq_link)": "https://jq.qq.com/?_wv=1027&k=Hwv4w2NU"
+}
 }

@@ -1,0 +1,36 @@
+name: Run Gradle Build
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  gradle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4.1.1
+
+      # RetroFuturaGradle 需要 JDK 25 跑 Gradle；编译用的 JDK 8 由 settings.gradle 里的 foojay 插件自动下载
+      - name: Setup Java
+        uses: actions/setup-java@v4.0.0
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Execute Gradle build
+        run: ./gradlew build
+
+      - name: Upload built mod JAR
+        uses: actions/upload-artifact@v4.3.0
+        with:
+          name: built-jar
+          path: |
+            build/libs/*.jar
+            !build/libs/*-dev.jar

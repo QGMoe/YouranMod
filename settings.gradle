@@ -1,0 +1,23 @@
+// 照 YouranSCP（CleanroomMC 的 Forge 1.12.2 开发模板 TemplateDevEnv，MIT，精简）：只留 RetroFuturaGradle 与工具链自动下载
+pluginManagement {
+    repositories {
+        maven {
+            // RetroFuturaGradle
+            name 'GTNH Maven'
+            url 'https://nexus.gtnewhorizons.com/repository/public/'
+            mavenContent {
+                includeGroup 'com.gtnewhorizons'
+                includeGroup 'com.gtnewhorizons.retrofuturagradle'
+            }
+        }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    // 自动下载编译用的 JDK 8（本机已有时用本机的）
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'youranmod'

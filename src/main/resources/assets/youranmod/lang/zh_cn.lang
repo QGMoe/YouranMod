@@ -49,5 +49,5 @@ item.icekuijiabody.name=冰制胸甲
 item.youranserver.name=悠然服务器Logo
 item.icekuijiahelmet.name=冰制头盔
 item.primogem_sword.name=来自异世之剑
-patchouli_books.youranbook.langding_text=了解我们服务器的基本玩法。$(br)服务器Q群：$(l:https://jq.qq.com/?_wv=1027&k=Hwv4w2NU)953168624)$()$(br)服务器官网：$(l:https://mc.ireading.store/)mc.ireading.store$()
+patchouli_books.youranbook.langding_text=了解我们服务器的基本玩法。$(br)服务器Q群：$(l:$(yr_qq_link))$(yr_qq)$()$(br)服务器官网：$(l:$(yr_site))$(yr_site_text)$()
 item.primogem_pickaxe.name=来自异世之镐

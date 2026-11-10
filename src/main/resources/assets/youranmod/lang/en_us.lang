@@ -49,5 +49,5 @@ item.icekuijiabody.name=Ice Body
 item.youranserver.name=Youran Server Logo
 item.icekuijiahelmet.name=Ice Helmet
 item.primogem_sword.name=A sword from another world
-patchouli_books.youranbook.langding_text=Learn the basics of how our servers are played. $(br)Server QQ group: $(l:https://jq.qq.com/?_wv=1027&k=Hwv4w2NU)953168624)$()$(br)Server official website: $(l:https://mc .ireading.store/)mc.ireading.store$()
+patchouli_books.youranbook.langding_text=Learn the basics of how our servers are played. $(br)Server QQ group: $(l:$(yr_qq_link))$(yr_qq)$()$(br)Server official website: $(l:$(yr_site))$(yr_site_text)$()
 item.primogem_pickaxe.name=A pickaxe from another world
